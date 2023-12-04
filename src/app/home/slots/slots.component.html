@@ -1,0 +1,5 @@
+<div class="row ms-4 mt-5">
+  <div class="col-2 m-2" *ngFor="let slot of slots; let _index = index">
+    <div class="slot" [ngClass]="slot.status">{{ _index + 1 }}</div>
+  </div>
+</div>

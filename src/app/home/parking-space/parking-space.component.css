@@ -1,0 +1,37 @@
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+button {
+  width: 90px;
+}
+.accordion-button {
+  margin-bottom: 20px;
+  font-size: large;
+  font-weight: bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.accordion-body {
+  animation: 1s ease-in-out 0s 1 slideInFromTop;
+  text-align: left;
+  transition: all;
+}
+.accordion-item {
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+.accordion-item:hover {
+  color: rgb(0, 140, 255);
+}
+.selected-accordian,
+.selected-accordian:hover {
+  color: aliceblue;
+  background: #ff0000;
+  border-radius: 24px;
+  margin-bottom: 32px;
+  height: 150px;
+}
