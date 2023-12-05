@@ -8,11 +8,11 @@
   font-weight: bold;
 }
 .Occupied {
-  background-color: red;
+  background-color: #23a6d5;
 }
 .Not_Occupied {
-  background-color: green;
+  background-color: #23d5ab;
 }
 .Banned {
-  background-color: yellow;
+  background-color: #e73c7e;
 }

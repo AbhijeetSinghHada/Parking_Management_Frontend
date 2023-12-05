@@ -42,9 +42,8 @@
 }
 
 .navbar img {
-  height: 16px;
-  width: auto;
   justify-self: start;
+  height: 60px;
   margin-left: 20px;
 }
 
@@ -59,11 +58,12 @@
 }
 .nav-item a {
   color: #000;
-  font-size: 0.9rem;
-  font-weight: 400;
+  font-size: 1.3rem;
+  font-weight: 800;
   text-decoration: none;
   transition: color 0.3s ease-out;
-  margin-right: 15px;
+  margin-right: 25px;
+  font-family: "Exo 2", sans-serif;
   cursor: pointer;
 }
 

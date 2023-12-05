@@ -1,39 +1,16 @@
-<div class="row">
-  <button class="btn btn-primary">Add</button>
-  <div
-    class="accordion-item"
-    *ngFor="let parkingSpace of parkingSpaceList; let i = index"
-    [ngClass]="
-      openAccordionIndex === parkingSpace.slot_type ? 'selected-accordian' : ''
-    "
-  >
-    <h2 class="accordion-header" [id]="'accordionHeader' + i">
-      <button
-        class="accordion-button collapsed"
-        type="button"
-        [attr.data-bs-target]="'#collapse' + i"
-        [attr.aria-expanded]="
-          openAccordionIndex === parkingSpace.slot_type ? 'true' : 'false'
-        "
-        [attr.aria-controls]="'collapse' + i"
-        (click)="SelectedCategory(parkingSpace.slot_type)"
-      >
-        {{ parkingSpace.slot_type }}
-      </button>
-    </h2>
-    <div
-      [id]="'collapse' + i"
-      class="accordion-collapse collapse"
-      [ngClass]="openAccordionIndex === parkingSpace.slot_type ? 'show' : ''"
-      [attr.aria-labelledby]="'accordionHeader' + i"
-      data-bs-parent="#accordionFlushExample"
+<button class="btn grad">Add Parking Space</button>
+<div class="row scrolling-area">
+  <ol class="scrolling-element-inside">
+    <li
+      [style]="getColor(_index)"
+      *ngFor="let parkingSpace of parkingSpaceList; let _index = index"
     >
-      <div class="accordion-body">
-        <strong
-          >Total Parking Capacity : {{ parkingSpace.total_capacity }}</strong
-        ><br />
-        <strong>Parking charges : {{ parkingSpace.charge }} Rs./Hr</strong>
+      <div class="title">{{ parkingSpace.slot_type }}</div>
+      <div class="descr">
+        <p>Total Capacity : {{ parkingSpace.total_capacity }}</p>
+        <hr />
+        <p>Charge : {{ parkingSpace.charge }} Rs./Hr</p>
       </div>
-    </div>
-  </div>
+    </li>
+  </ol>
 </div>

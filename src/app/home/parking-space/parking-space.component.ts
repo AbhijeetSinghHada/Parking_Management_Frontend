@@ -17,6 +17,21 @@ export class ParkingSpaceComponent {
   ) {
     this.updateParkingSpace();
   }
+  getColor(index: number) {
+    let colorList = [
+      '--accent-color: #0d6efd',
+      '--accent-color: #6610f2',
+      '--accent-color: #6f42c1',
+      '--accent-color: #d63384',
+      '--accent-color: #dc3545',
+      '--accent-color: #fd7e14',
+      '--accent-color: #ffc107',
+      '--accent-color: #198754',
+      '--accent-color: #20c997',
+    ];
+
+    return colorList[index % colorList.length];
+  }
 
   updateParkingSpace() {
     this.parkingSpace.getParkingSpace().subscribe((data: Object[]) => {
