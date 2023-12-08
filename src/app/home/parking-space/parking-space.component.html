@@ -1,16 +1,27 @@
-<button class="btn grad">Add Parking Space</button>
-<div class="row scrolling-area">
-  <ol class="scrolling-element-inside">
-    <li
-      [style]="getColor(_index)"
-      *ngFor="let parkingSpace of parkingSpaceList; let _index = index"
-    >
-      <div class="title">{{ parkingSpace.slot_type }}</div>
-      <div class="descr">
-        <p>Total Capacity : {{ parkingSpace.total_capacity }}</p>
-        <hr />
-        <p>Charge : {{ parkingSpace.charge }} Rs./Hr</p>
-      </div>
-    </li>
-  </ol>
+<div *ngIf="isOverlayOpen">
+  <app-update-add-space
+    (closeOverlayEvent)="toggleOverlay()"
+  ></app-update-add-space>
+</div>
+<div class="wrapper-box">
+  <button class="grad" (click)="onAddParkingSpace()">Add Parking Space</button>
+  <div class="row scrolling-area">
+    <ol class="scrolling-element-inside">
+      <li
+        [style]="getColor(_index)"
+        [ngClass]="
+          parkingSpace.slot_type === selectedCategory ? 'selected' : ''
+        "
+        *ngFor="let parkingSpace of parkingSpaceList; let _index = index"
+        (click)="SelectedCategory(parkingSpace.slot_type)"
+      >
+        <div class="title">{{ parkingSpace.slot_type }}</div>
+        <div class="descr">
+          <p>Total Capacity : {{ parkingSpace.total_capacity }}</p>
+          <hr />
+          <p>Charge : {{ parkingSpace.charge }} Rs./Hr</p>
+        </div>
+      </li>
+    </ol>
+  </div>
 </div>

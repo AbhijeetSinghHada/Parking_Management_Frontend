@@ -38,13 +38,17 @@ ol {
   flex-direction: column;
   align-items: center;
 }
-
+.selected {
+  transform: scale(1.1);
+  transition: transform 0.5s ease-in-out;
+}
 li {
+  transition: transform 0.5s ease-in-out;
   --frontColor: white;
   --width: 13em;
   --inlineP: 0.5rem;
   --borderR: 4rem;
-
+  cursor: pointer;
   counter-increment: cardnr;
   width: calc(var(--width) - var(--inlineP) * 2);
   display: grid;
@@ -106,7 +110,7 @@ li .descr::before {
 }
 
 li::after {
-  content: counter(cardnr, decimal-leading-zero);
+  content: "";
   position: absolute;
   z-index: -1;
 
@@ -144,65 +148,27 @@ li::before {
   opacity: 0.5;
   filter: blur(2px);
 }
+.wrapper-box {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  height: 100%;
+  padding: 20px;
+}
 
 /* Scrolling */
 
 .scrolling-area {
-  height: 80vh;
+  margin-top: 20px;
+  height: 80%;
   overflow: auto;
   padding: 1rem;
   direction: rtl;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .scrolling-element-inside {
   direction: ltr;
 }
 
-.grad {
-  /* border-radius: 30px; */
-  color: white;
-  font-size: 1.5em;
-  padding: 5px;
-  margin-bottom: 20px;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  -webkit-animation: gradbar 15s ease infinite;
-  -moz-animation: gradbar 15s ease infinite;
-  animation: gradbar 15s ease infinite;
-}
-@-webkit-keyframes gradbar {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@-moz-keyframes gradbar {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes gradbar {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+button {
+  width: 60%;
+  height: 50px;
 }

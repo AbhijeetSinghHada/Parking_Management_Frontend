@@ -1,0 +1,94 @@
+.card {
+  max-width: 800px;
+  height: auto;
+  padding: 2rem;
+  padding-bottom: 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.close-button {
+  top: 2px;
+  margin-left: calc(100% - 2rem);
+  height: 30px;
+  width: 30px;
+  position: relative;
+}
+.background-blur {
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  height: calc(100%);
+  top: 0px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  z-index: 3;
+}
+/* -----Form Styling----- */
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 60px #eff6ef inset !important;
+}
+.title-text {
+  color: black;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+  text-align: center;
+}
+.vehicle-details-heading {
+  color: black;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+.customer-details-heading {
+  color: black;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+button {
+  width: 60%;
+  height: 50px;
+  font-size: 1.3rem;
+}
+
+.grad-box-size {
+  width: 100%;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.form {
+  background: white;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

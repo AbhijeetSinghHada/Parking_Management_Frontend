@@ -14,8 +14,9 @@ input:-webkit-autofill:active {
   text-align: center;
 }
 .btn {
-  background: #0aabf3;
   color: #fff;
+  height: 50px;
+  width: 100%;
 }
 .grad-box-size {
   width: 97%;
@@ -35,6 +36,10 @@ input:-webkit-autofill:active {
 .form {
   background: white;
   padding: 20px;
+}
+.img-fluid {
+  margin-left: 80px;
+  margin-top: 20px;
 }
 @-webkit-keyframes gradbar {
   0% {

@@ -19,12 +19,19 @@ export class AuthInterceptorService implements HttpInterceptor {
           return next.handle(req);
         }
         const token = user.token;
-        console.log(token);
         const newReq = req.clone({
           headers: new HttpHeaders({ Authorization: 'Bearer ' + token }),
         });
         return next.handle(newReq);
       })
     );
+  }
+}
+
+function wait(ms) {
+  var start = Date.now(),
+    now = start;
+  while (now - start < ms) {
+    now = Date.now();
   }
 }

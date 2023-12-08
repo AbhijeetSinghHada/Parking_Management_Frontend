@@ -1,5 +1,34 @@
-<div class="row ms-4 mt-5">
-  <div class="col-2 m-2" *ngFor="let slot of slots; let _index = index">
-    <div class="slot" [ngClass]="slot.status">{{ _index + 1 }}</div>
+<div class="row align-items-start">
+  <div class="col-8 scrolling-area">
+    <div class="row justify-content-between scrolling-element-inside">
+      <div class="col m-1" *ngFor="let slot of slots; let _index = index">
+        <div class="slot" [ngClass]="slot.status">{{ _index + 1 }}</div>
+      </div>
+    </div>
   </div>
+  <div class="col-2 me-2 ms-2">
+    <div class="row">
+      <button class="col-12 grad" (click)="onEditParkingSpace()">
+        Edit Parking Space
+      </button>
+      <h3>Identifiers :</h3>
+      <div class="inner-identifier-wrapper">
+        <div class="slot-identifier" ngClass="Occupied"></div>
+        <span>Occupied</span>
+      </div>
+      <div class="inner-identifier-wrapper">
+        <div class="slot-identifier" ngClass="Not_Occupied"></div>
+        <span>Not Occupied</span>
+      </div>
+      <div class="inner-identifier-wrapper">
+        <div class="slot-identifier" ngClass="Banned"></div>
+        <span>Banned</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="isOverlayOpen">
+  <app-update-add-space
+    (closeOverlayEvent)="toggleOverlay()"
+  ></app-update-add-space>
 </div>

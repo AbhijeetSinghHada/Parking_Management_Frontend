@@ -4,6 +4,7 @@ import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth/auth.guard';
 import { SlotsComponent } from './home/slots/slots.component';
+import { AddUpdateSpaceComponent } from './home/parking-space/add-update-space/add-update-space.component';
 
 const routes: Routes = [
   {
@@ -24,12 +25,16 @@ const routes: Routes = [
         path: 'parkingspace/:category/slots',
         component: SlotsComponent,
       },
+      {
+        path: 'parkingspace/add',
+        component: AddUpdateSpaceComponent,
+      },
     ],
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

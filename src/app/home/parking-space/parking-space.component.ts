@@ -9,45 +9,61 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ParkingSpaceComponent {
   parkingSpaceList = [];
-  openAccordionIndex: string | null = null;
+  selectedCategory: string;
+  isOverlayOpen: boolean = false;
   constructor(
-    private parkingSpace: ParkingSpaceService,
+    private parkingSpaceService: ParkingSpaceService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
+  ) {}
+  ngOnInit() {
     this.updateParkingSpace();
+  }
+  toggleOverlay() {
+    this.isOverlayOpen = !this.isOverlayOpen;
+  }
+  onAddParkingSpace() {
+    this.parkingSpaceService.parkingSpaceDetails.next({
+      edit: false,
+      formTitle: 'Add Parking Space',
+      parkingCategory: '',
+      totalCapacity: null,
+      charges: null,
+    });
+    this.toggleOverlay();
   }
   getColor(index: number) {
     let colorList = [
-      '--accent-color: #0d6efd',
+      '--accent-color: #23a6d5',
+      '--accent-color: #ffc107',
+      '--accent-color: #fd7e14',
       '--accent-color: #6610f2',
       '--accent-color: #6f42c1',
       '--accent-color: #d63384',
       '--accent-color: #dc3545',
-      '--accent-color: #fd7e14',
-      '--accent-color: #ffc107',
-      '--accent-color: #198754',
       '--accent-color: #20c997',
+      '--accent-color: #198754',
     ];
 
     return colorList[index % colorList.length];
   }
 
   updateParkingSpace() {
-    this.parkingSpace.getParkingSpace().subscribe((data: Object[]) => {
+    this.parkingSpaceService.getParkingSpace().subscribe((data: Object[]) => {
       this.parkingSpaceList = data;
-      console.log(this.parkingSpaceList);
+      this.SelectedCategory(this.parkingSpaceList[0].slot_type);
     });
   }
 
   SelectedCategory(parkingCategory: string) {
-    if (this.openAccordionIndex === parkingCategory) {
-      this.openAccordionIndex = null;
-    } else {
-      this.openAccordionIndex = parkingCategory;
-    }
     this.router.navigate(['parkingspace', parkingCategory, 'slots'], {
       relativeTo: this.route,
     });
+    this.selectedCategory = parkingCategory;
+    this.parkingSpaceService.selectedParkingSpace.next(
+      this.parkingSpaceList.find((parkingSpace) => {
+        return parkingSpace.slot_type === parkingCategory;
+      })
+    );
   }
 }

@@ -21,7 +21,7 @@
           <a [routerLink]="['/home']">Home</a>
         </li>
         <li class="nav-item" *ngIf="isAuthenticated">
-          <a [routerLink]="['/home']">Vehicle</a>
+          <a (click)="onVehicle()">Vehicle</a>
         </li>
         <li class="nav-item logout" *ngIf="isAuthenticated">
           <a (click)="onLogout()">Logout</a>
