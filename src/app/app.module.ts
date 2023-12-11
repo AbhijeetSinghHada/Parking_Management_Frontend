@@ -10,10 +10,11 @@ import { AuthModule } from './auth/auth.module';
 import { HomeComponent } from './home/home.component';
 import { ParkingSpaceComponent } from './home/parking-space/parking-space.component';
 import { SlotsComponent } from './home/slots/slots.component';
-import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { AuthInterceptorService } from './Interceptors/auth-interceptor.service';
 import { AddUpdateSpaceComponent } from './home/parking-space/add-update-space/add-update-space.component';
 import { FormsModule } from '@angular/forms';
 import { VehicleComponent } from './vehicle/vehicle.component';
+import { AlertComponent } from './shared/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { VehicleComponent } from './vehicle/vehicle.component';
     SlotsComponent,
     AddUpdateSpaceComponent,
     VehicleComponent,
+    AlertComponent,
   ],
   imports: [
     FormsModule,

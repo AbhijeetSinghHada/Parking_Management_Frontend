@@ -30,6 +30,7 @@ export class ParkingSpaceComponent {
       totalCapacity: null,
       charges: null,
     });
+    this.updateParkingSpace();
     this.toggleOverlay();
   }
   getColor(index: number) {

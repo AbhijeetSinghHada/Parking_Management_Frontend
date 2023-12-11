@@ -46,7 +46,6 @@ export class AuthService {
     this.tokenExpirationTimer = null;
   }
   autoLogout(expirationDuration: number) {
-    console.log(expirationDuration);
     this.tokenExpirationTimer = setTimeout(() => {
       this.logout();
     }, expirationDuration);
@@ -80,7 +79,6 @@ export class AuthService {
         new Date(userData._tokenExpirationDate).getTime() -
         new Date().getTime();
       this.router.navigate(['/home']);
-      console.log(expirationTime);
       this.autoLogout(expirationTime);
     }
   }

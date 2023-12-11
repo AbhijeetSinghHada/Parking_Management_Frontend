@@ -1,26 +1,49 @@
-<div class="row align-items-start">
+<div class="row">
   <div class="col-8 scrolling-area">
-    <div class="row justify-content-between scrolling-element-inside">
-      <div class="col m-1" *ngFor="let slot of slots; let _index = index">
-        <div class="slot" [ngClass]="slot.status">{{ _index + 1 }}</div>
+    <div class="col-12">
+      <div class="heading">{{ selectedCategoryDetails.slot_type }}</div>
+    </div>
+    <div class="row scrolling-element-inside">
+      <div
+        class="col m-1 dropdown"
+        *ngFor="let slot of slots; let _index = index"
+      >
+        <button
+          class="slot dropdown-toggle"
+          [ngClass]="slot.status"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          id="slot-{{ _index }}"
+        >
+          {{ _index + 1 }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="slot-{{ _index }}">
+          <li><button class="dropdown-item" type="button">Action</button></li>
+          <li>
+            <button class="dropdown-item" type="button">Another action</button>
+          </li>
+          <li>
+            <button class="dropdown-item" type="button">
+              Something else here
+            </button>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
   <div class="col-2 me-2 ms-2">
     <div class="row">
-      <button class="col-12 grad" (click)="onEditParkingSpace()">
-        Edit Parking Space
-      </button>
+      <button class="col-12 grad" (click)="onEditParkingSpace()">Edit</button>
       <h3>Identifiers :</h3>
-      <div class="inner-identifier-wrapper">
+      <div class="mb-2 inner-identifier-wrapper">
         <div class="slot-identifier" ngClass="Occupied"></div>
         <span>Occupied</span>
       </div>
-      <div class="inner-identifier-wrapper">
+      <div class="mb-2 inner-identifier-wrapper">
         <div class="slot-identifier" ngClass="Not_Occupied"></div>
         <span>Not Occupied</span>
       </div>
-      <div class="inner-identifier-wrapper">
+      <div class="mb-2 inner-identifier-wrapper">
         <div class="slot-identifier" ngClass="Banned"></div>
         <span>Banned</span>
       </div>

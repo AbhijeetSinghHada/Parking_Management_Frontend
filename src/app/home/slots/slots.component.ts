@@ -13,17 +13,20 @@ export class SlotsComponent {
   slots: Slot[] = null;
   parkingCategory: string;
   isOverlayOpen: boolean = false;
+  selectedCategoryDetails: any = null;
   constructor(
     private slotsService: SlotsService,
     private route: ActivatedRoute,
     private parkingSpaceService: ParkingSpaceService
   ) {}
   ngOnInit() {
-    console.log(this.route.snapshot.params);
     this.parkingCategory = this.route.snapshot.params['category'];
     this.route.params.subscribe((params: Params) => {
       this.parkingCategory = params['category'];
       this.getSlots(this.parkingCategory);
+    });
+    this.parkingSpaceService.selectedParkingSpace.subscribe((data) => {
+      this.selectedCategoryDetails = data;
     });
   }
 

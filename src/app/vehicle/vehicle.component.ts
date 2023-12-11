@@ -21,5 +21,19 @@ export class VehicleComponent implements OnInit {
   closeOverlay() {
     this.vehicleService.vehicleOverlayToggle.next(false);
   }
-  onSubmit(form: NgForm) {}
+  onSubmit(form: NgForm) {
+    console.log(form.value);
+    this.vehicleService.add_vehicle(form.value).subscribe(
+      (result) => {
+        setTimeout(() => {
+          this.closeOverlay();
+        }, 2000);
+      },
+      (error) => {
+        setTimeout(() => {
+          this.closeOverlay();
+        }, error.timeout);
+      }
+    );
+  }
 }

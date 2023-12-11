@@ -12,17 +12,19 @@ input:-webkit-autofill:active {
   font-weight: bold;
   margin-bottom: 1em;
   text-align: center;
+  color: black;
 }
 .btn {
   color: #fff;
   height: 50px;
   width: 100%;
+  font-size: 1.2em;
 }
 .grad-box-size {
   width: 97%;
-
-  padding-left: 1rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 0px;
+  padding-left: 1rem;
 }
 
 .grad {
