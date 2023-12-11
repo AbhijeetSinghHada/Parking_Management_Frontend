@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SlotsService } from './slots.service';
 import { Slot } from './slot.model';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ParkingSpaceService } from '../parking-space/parking-space.service';
+import { ParkingSpaceService } from '../home/parking-space/parking-space.service';
 
 @Component({
   selector: 'app-slots',

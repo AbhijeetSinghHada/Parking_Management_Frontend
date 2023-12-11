@@ -18,13 +18,41 @@
           {{ _index + 1 }}
         </button>
         <ul class="dropdown-menu" aria-labelledby="slot-{{ _index }}">
-          <li><button class="dropdown-item" type="button">Action</button></li>
           <li>
-            <button class="dropdown-item" type="button">Another action</button>
+            <button
+              class="dropdown-item park-vehicle"
+              type="button"
+              *ngIf="slot.status === 'Not_Occupied'"
+            >
+              Park Vehicle
+            </button>
+          </li>
+
+          <li>
+            <button
+              class="dropdown-item ban-slot"
+              type="button"
+              *ngIf="slot.status === 'Not_Occupied'"
+            >
+              Ban Slot
+            </button>
           </li>
           <li>
-            <button class="dropdown-item" type="button">
-              Something else here
+            <button
+              class="dropdown-item unban-slot"
+              type="button"
+              *ngIf="slot.status === 'Banned'"
+            >
+              Un-Ban Slot
+            </button>
+          </li>
+          <li>
+            <button
+              class="dropdown-item checkout-vehicle"
+              type="button"
+              *ngIf="slot.status === 'Occupied'"
+            >
+              Checkout Vehicle
             </button>
           </li>
         </ul>

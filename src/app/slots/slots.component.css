@@ -73,3 +73,23 @@ h3 {
 .dropdown-toggle::after {
   content: none;
 }
+.grad {
+  font-size: 1.2em;
+}
+
+.dropdown-item.checkout-vehicle:hover {
+  background-color: #23a6d5;
+  color: black;
+}
+.dropdown-item.unban-slot:hover {
+  background-color: #e73c7e;
+  color: black;
+}
+.dropdown-item.park-vehicle:hover {
+  background-color: #23d5ab;
+  color: black;
+}
+.dropdown-item.ban-slot:hover {
+  background-color: rgb(234, 54, 26);
+  color: black;
+}

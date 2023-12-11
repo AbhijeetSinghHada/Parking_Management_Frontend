@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/auth.module';
 import { HomeComponent } from './home/home.component';
 import { ParkingSpaceComponent } from './home/parking-space/parking-space.component';
-import { SlotsComponent } from './home/slots/slots.component';
+import { SlotsComponent } from './slots/slots.component';
 import { AuthInterceptorService } from './Interceptors/auth-interceptor.service';
 import { AddUpdateSpaceComponent } from './home/parking-space/add-update-space/add-update-space.component';
 import { FormsModule } from '@angular/forms';
