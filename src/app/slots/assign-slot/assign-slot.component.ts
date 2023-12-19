@@ -19,7 +19,9 @@ export class AssignSlotComponent {
   slotCategory: string = null;
   ngOnInit() {
     this.slotId = this.route.snapshot.params['slotId'];
-    this.slotCategory = this.route.snapshot.pathFromRoot[2].params['category'];
+    this.slotCategory = this.route.snapshot.pathFromRoot[3].params['category'];
+    console.log(this.slotCategory);
+    console.log(this.route.snapshot.pathFromRoot);
   }
   redirectBack() {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
