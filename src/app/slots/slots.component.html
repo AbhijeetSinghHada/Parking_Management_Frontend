@@ -1,11 +1,63 @@
-<div class="row">
-  <div class="col-8 scrolling-area">
-    <div class="col-12">
-      <div class="heading">{{ selectedCategoryDetails.slot_type }}</div>
+<div class="row pt-3 g-0 parent">
+  <div class="col-12 mb-2 ms-2">
+    <div class="row parking-details">
+      <div class="col-2">
+        Total Capacity : {{ selectedCategoryDetails.total_capacity }}
+      </div>
+      <div class="col-2">
+        Charges Per Hour : {{ selectedCategoryDetails.charge }}
+      </div>
+      <div class="col edit-wrapper">
+        <div
+          class="edit"
+          *ngIf="accessorUserRole.includes('Admin')"
+          (click)="onEditParkingSpace()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="20"
+            fill="currentColor"
+            class="bi bi-pencil"
+            viewBox="0 2 16 16"
+          >
+            <path
+              d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"
+            />
+          </svg>
+          Edit
+        </div>
+      </div>
     </div>
+  </div>
+  <hr />
+  <div class="col-12 ms-2">
+    <div class="row">
+      <div class="col-2 inner-identifier-wrapper">
+        <div class="slot-identifier" ngClass="Occupied"></div>
+        <span>Occupied</span>
+      </div>
+      <div class="col-2 inner-identifier-wrapper">
+        <div class="slot-identifier" ngClass="Not_Occupied"></div>
+        <span>Not Occupied</span>
+      </div>
+      <div class="col-2 inner-identifier-wrapper">
+        <div class="slot-identifier" ngClass="Banned"></div>
+        <span>Banned</span>
+      </div>
+      <div class="col g-0">
+        <div class="checkout-vehicle" (click)="onCheckoutVehicle()">
+          <i class="fa-solid fa-car-tunnel"></i>
+          Checkout Vehicle
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 heading">Slots</div>
+  <div class="col-12 scrolling-area">
     <div class="row scrolling-element-inside">
       <div
-        class="col m-1 dropdown"
+        class="col m-1 mb-3 dropdown"
         *ngFor="let slot of slots; let _index = index"
       >
         <button
@@ -15,71 +67,63 @@
           aria-expanded="false"
           id="slot-{{ _index }}"
         >
-          {{ _index + 1 }}
+          {{ slot.slot_id }}
         </button>
-        <ul class="dropdown-menu" aria-labelledby="slot-{{ _index }}">
-          <li>
+        <ul
+          class="dropdown-menu"
+          aria-labelledby="slot-{{ _index }}"
+          [ngClass]="
+            (slot.status === 'Banned' && !accessorUserRole.includes('Admin')) ||
+            slot.status === 'Occupied'
+              ? 'hide-dropdown'
+              : ''
+          "
+        >
+          <li *ngIf="slot.status === 'Not_Occupied'">
             <button
-              class="dropdown-item park-vehicle"
+              class="dropdown-item"
               type="button"
-              *ngIf="slot.status === 'Not_Occupied'"
+              (click)="onParkVehicle(slot)"
             >
               Park Vehicle
             </button>
           </li>
-
-          <li>
+          <li
+            *ngIf="
+              slot.status === 'Not_Occupied' &&
+              accessorUserRole.includes('Admin')
+            "
+          >
             <button
-              class="dropdown-item ban-slot"
+              class="dropdown-item"
               type="button"
-              *ngIf="slot.status === 'Not_Occupied'"
+              (click)="onBanSlot($event, slot)"
             >
               Ban Slot
             </button>
           </li>
-          <li>
+          <li
+            *ngIf="
+              slot.status === 'Banned' && accessorUserRole.includes('Admin')
+            "
+          >
             <button
-              class="dropdown-item unban-slot"
+              class="dropdown-item"
               type="button"
-              *ngIf="slot.status === 'Banned'"
+              (click)="onUnBanSlot($event, slot)"
             >
               Un-Ban Slot
-            </button>
-          </li>
-          <li>
-            <button
-              class="dropdown-item checkout-vehicle"
-              type="button"
-              *ngIf="slot.status === 'Occupied'"
-            >
-              Checkout Vehicle
             </button>
           </li>
         </ul>
       </div>
     </div>
   </div>
-  <div class="col-2 me-2 ms-2">
-    <div class="row">
-      <button class="col-12 grad" (click)="onEditParkingSpace()">Edit</button>
-      <h3>Identifiers :</h3>
-      <div class="mb-2 inner-identifier-wrapper">
-        <div class="slot-identifier" ngClass="Occupied"></div>
-        <span>Occupied</span>
-      </div>
-      <div class="mb-2 inner-identifier-wrapper">
-        <div class="slot-identifier" ngClass="Not_Occupied"></div>
-        <span>Not Occupied</span>
-      </div>
-      <div class="mb-2 inner-identifier-wrapper">
-        <div class="slot-identifier" ngClass="Banned"></div>
-        <span>Banned</span>
-      </div>
-    </div>
-  </div>
 </div>
-<div *ngIf="isOverlayOpen">
+<p-confirmDialog></p-confirmDialog>
+<div *ngIf="isAddUpdateOverlayOpen">
   <app-update-add-space
-    (closeOverlayEvent)="toggleOverlay()"
+    (closeOverlayEvent)="toggleAddUpdateOverlay()"
   ></app-update-add-space>
 </div>
+<router-outlet></router-outlet>

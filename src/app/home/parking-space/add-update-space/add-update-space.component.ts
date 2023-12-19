@@ -47,7 +47,6 @@ export class AddUpdateSpaceComponent implements OnInit {
   }
   onSubmit(form: NgForm) {
     if (this.functionalParkingDetails.edit) {
-      console.log(form.value);
       this.parkingSpaceService
         .updateParkingSpace({
           slot_type: form.value.parkingCategory,
@@ -56,6 +55,11 @@ export class AddUpdateSpaceComponent implements OnInit {
         })
         .subscribe((data) => {
           this.closeOverlayEvent.emit();
+          this.router
+            .navigateByUrl('/', { skipLocationChange: true })
+            .then(() => {
+              this.router.navigate([decodeURI(this.router.url)]);
+            });
         });
     } else {
       this.parkingSpaceService
@@ -66,9 +70,13 @@ export class AddUpdateSpaceComponent implements OnInit {
         })
         .subscribe((data) => {
           this.closeOverlayEvent.emit();
+          this.router
+            .navigateByUrl('/', { skipLocationChange: true })
+            .then(() => {
+              this.router.navigate([decodeURI(this.router.url)]);
+            });
         });
     }
-    console.log(this.route.snapshot.url);
   }
 
   closeOverlay(event) {

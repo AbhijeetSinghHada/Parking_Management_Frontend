@@ -1,0 +1,46 @@
+<div class="background-blur" (click)="redirectBack()">
+  <div class="card" (click)="$event.stopImmediatePropagation()">
+    <div class="close-button" (click)="redirectBack()">
+      <i class="fas fa-times"></i>
+    </div>
+    <form #unassignSlotForm="ngForm" class="row form" *ngIf="!billDetails">
+      <div class="row g-3">
+        <div class="col">
+          <p class="title-text">Checkout Vehicle</p>
+        </div>
+      </div>
+
+      <div class="row g-3 mt-1">
+        <div class="col">
+          <label for="vehicle-number" class="visually-hidden"
+            >Vehicle Number</label
+          >
+          <input
+            type="text"
+            class="form-control p-3"
+            id="vehicle-number"
+            placeholder="Vehicle Number"
+            required
+            name="vehicle_number"
+            pattern="[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}"
+            [ngModel]
+          />
+        </div>
+      </div>
+
+      <div class="row g-3 mt-2">
+        <div class="col text-align-center button-general">
+          <button
+            type="submit"
+            class="mb-3 w-50"
+            [disabled]="!unassignSlotForm.valid"
+            (click)="onSubmit(unassignSlotForm)"
+          >
+            Checkout
+          </button>
+        </div>
+      </div>
+    </form>
+    <app-bill [billDetails]="billDetails" *ngIf="billDetails"></app-bill>
+  </div>
+</div>

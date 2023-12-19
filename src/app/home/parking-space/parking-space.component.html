@@ -4,24 +4,29 @@
   ></app-update-add-space>
 </div>
 <div class="wrapper-box">
-  <button class="grad" (click)="onAddParkingSpace()">Add</button>
-  <div class="row scrolling-area">
-    <ol class="scrolling-element-inside">
-      <li
-        [style]="getColor(_index)"
-        [ngClass]="
-          parkingSpace.slot_type === selectedCategory ? 'selected' : ''
-        "
-        *ngFor="let parkingSpace of parkingSpaceList; let _index = index"
-        (click)="SelectedCategory(parkingSpace.slot_type)"
+  <div class="row w-100 justify-content-center heading">
+    <div class="col-10 categories-text">Categories</div>
+    <div class="col-2 g-0">
+      <div
+        class="add-space"
+        *ngIf="accessorUserRole.includes('Admin')"
+        (click)="onAddParkingSpace()"
       >
-        <div class="title">{{ parkingSpace.slot_type }}</div>
-        <div class="descr">
-          <p>Total Capacity : {{ parkingSpace.total_capacity }}</p>
-          <hr />
-          <p>Charge : {{ parkingSpace.charge }} Rs./Hr</p>
-        </div>
-      </li>
-    </ol>
+        <i class="fa-solid fa-plus"></i>
+        <div class="add-parking">Add Parking Space</div>
+      </div>
+    </div>
+    <hr class="heading-divider" />
+  </div>
+  <div class="row scrolling-area">
+    <div
+      class="col-12 g-0 category"
+      [ngClass]="parkingSpace.slot_type === selectedCategory ? 'selected' : ''"
+      *ngFor="let parkingSpace of parkingSpaceList; let _index = index"
+      (click)="SelectedCategory(parkingSpace.slot_type)"
+    >
+      {{ parkingSpace.slot_type }}
+      <i class="fa-solid fa-inbox"></i>
+    </div>
   </div>
 </div>

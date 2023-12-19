@@ -1,36 +1,21 @@
 import { Injectable } from '@angular/core';
-import { AlertService } from './alert/alert.service';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ResponseHandlerService {
-  constructor() {}
+  constructor(private messageService: MessageService) {}
 
-  handleResponse(data) {
-    if (data.error) {
-      const msgError = data.error;
-      const message = msgError.message;
-      const type = 'success';
-      if (msgError.code === 200) {
-        return {
-          message: message,
-          type: 'success',
-          timeout: 3000,
-        };
-      } else {
-        return {
-          message: message,
-          type: 'error',
-          timeout: 3000,
-        };
-      }
-    } else {
-      return {
-        message: data.message,
-        type: 'success',
-        timeout: 5000,
-      };
+  handleError(error) {
+    let errorMessage = 'An unknown error occurred!';
+    if (error.error.error.message) {
+      errorMessage = error.error.error.message;
     }
+    this.messageService.add({
+      severity: 'error',
+      detail: errorMessage,
+    });
+    return error;
   }
 }

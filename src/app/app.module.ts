@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,7 +16,10 @@ import { AuthInterceptorService } from './Interceptors/auth-interceptor.service'
 import { AddUpdateSpaceComponent } from './home/parking-space/add-update-space/add-update-space.component';
 import { FormsModule } from '@angular/forms';
 import { VehicleComponent } from './vehicle/vehicle.component';
-import { AlertComponent } from './shared/alert/alert.component';
+import { AssignSlotComponent } from './slots/assign-slot/assign-slot.component';
+import { UnassignSlotComponent } from './slots/unassign-slot/unassign-slot.component';
+import { MessageService } from 'primeng/api';
+import { BillComponent } from './slots/unassign-slot/bill/bill.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +30,18 @@ import { AlertComponent } from './shared/alert/alert.component';
     SlotsComponent,
     AddUpdateSpaceComponent,
     VehicleComponent,
-    AlertComponent,
+    AssignSlotComponent,
+    UnassignSlotComponent,
+    BillComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
+    ToastModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ConfirmDialogModule,
     AuthModule,
   ],
   providers: [
@@ -41,6 +50,8 @@ import { AlertComponent } from './shared/alert/alert.component';
       useClass: AuthInterceptorService,
       multi: true,
     },
+    MessageService,
+    ToastModule,
   ],
   bootstrap: [AppComponent],
 })

@@ -1,19 +1,26 @@
-<div class="row align-items-center main-row" style="height: 80vh">
+<div
+  class="row align-items-center justify-content-center main-row"
+  style="height: 80vh"
+>
   <div class="col-5">
-    <div class="grad-box-size grad ms-4">
+    <div class="grad-box-size ms-4">
       <form
         (ngSubmit)="onLogin(authFrom)"
         #authFrom="ngForm"
         class="row p-4 form"
       >
         <div class="row g-3 mt-2">
-          <div class="col">
-            <p class="login-text">Login</p>
+          <div class="col-12">
+            <p class="login-heading">Welcome Back!</p>
           </div>
+          <div class="col-12">
+            <p class="login-text">Login to your account</p>
+          </div>
+          <div class="divider"></div>
         </div>
         <div class="row g-3 mt-2">
           <div class="col">
-            <label for="username" class="visually-hidden">Username</label>
+            <label for="username">Username</label>
             <input
               type="text"
               class="form-control p-3"
@@ -27,7 +34,7 @@
         </div>
         <div class="row g-3 mt-2">
           <div class="col">
-            <label for="Password" class="visually-hidden">Password</label>
+            <label for="Password">Password</label>
             <input
               type="password"
               class="form-control p-3"
@@ -40,10 +47,21 @@
           </div>
         </div>
         <div class="row g-3 mt-2">
-          <div class="col">
+          <div class="col-6 ms-1">
+            <input
+              type="checkbox"
+              id="remember"
+              name="rememberMe"
+              value="Remember Me"
+              ngModel
+            />
+            <label class="remember-me" for="remember">Remember Me</label>
+          </div>
+          <div class="col-12 button-general">
             <button
               type="submit"
-              class="btn mb-3 grad"
+              [ngClass]="isLoading ? 'button__loader' : ''"
+              class="btn mb-3"
               [disabled]="!authFrom.valid"
             >
               Login

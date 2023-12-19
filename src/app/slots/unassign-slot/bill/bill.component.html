@@ -1,0 +1,53 @@
+<div class="row">
+  <h3 class="col text-align-center">Bill</h3>
+</div>
+<div class="row">
+  <h5 class="col text-align-center">Customer Details</h5>
+</div>
+<div class="row details-container">
+  <div class="left-side">
+    <div>Customer ID :</div>
+    <div>Name :</div>
+    <div>Email :</div>
+    <div>Phone Number :</div>
+  </div>
+  <div class="right-side">
+    <div>{{ billDetails.bill.customer.cutomer_id }}</div>
+    <div>{{ billDetails.bill.customer.name }}</div>
+    <div>{{ billDetails.bill.customer.email_address }}</div>
+    <div>{{ billDetails.bill.customer.phone_number }}</div>
+  </div>
+</div>
+<div class="row">
+  <h5 class="col text-align-center">Vehicle Details</h5>
+</div>
+<div class="row details-container">
+  <div class="left-side">
+    <div>Slot Number :</div>
+    <div>Vehicle Number :</div>
+    <div>Vehicle Type :</div>
+    <div>Charges Per Hour :</div>
+    <div>Check In :</div>
+    <div>Check Out :</div>
+    <div>Total Charges :</div>
+  </div>
+  <div class="right-side">
+    <div>{{ billDetails.slot.slot_number }}</div>
+    <div>{{ billDetails.slot.vehicle_number }}</div>
+    <div>{{ billDetails.slot.vehicle_type }}</div>
+    <div>{{ billDetails.slot.slot_charges }} &#8377;</div>
+    <div>{{ billDetails.bill.time_in }}</div>
+    <div>{{ billDetails.bill.time_out }}</div>
+    <div>{{ billDetails.bill.total_charges }} &#8377;</div>
+  </div>
+</div>
+<div class="row">
+  <h5 class="col text-align-center">
+    Thank you for Visiting. Have a nice day!
+  </h5>
+</div>
+<div class="row">
+  <div class="col text-align-center button-general">
+    <button (click)="redirectBack()">Go Back</button>
+  </div>
+</div>

@@ -6,7 +6,7 @@
   padding: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   font-size: 1.1rem;
-  font-weight: 800;
+  font-weight: 400;
   text-decoration: none;
   transition: color 0.3s ease-out;
 }
@@ -15,40 +15,59 @@ button {
   height: 50px;
 }
 
-.scrolling-area {
-  height: 100%;
+.legends {
+  font-size: 1rem;
+  font-weight: 100;
+  color: rgb(43, 43, 43);
+  margin-right: 200px;
 }
-
-h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  font-family: "Exo 2", sans-serif;
+.inner-identifier-wrapper {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-size: 13px;
 }
 .slot-identifier {
-  height: 20px;
-  width: 20px;
+  height: 13px;
+  width: 13px;
   margin-right: 4px;
+}
+.parking-details {
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: start;
+}
+.edit-wrapper {
+  justify-content: end;
+  text-align: end;
+  padding-right: 25px;
+}
+.checkout-vehicle {
+  border-radius: 4px;
+  padding-right: 25px;
+  text-align: end;
+  cursor: pointer;
+}
+.checkout-vehicle:hover {
+  color: #06aaee;
 }
 
 .Occupied {
-  background-color: #23a6d5;
+  background-color: #83d2ee;
 }
 .Not_Occupied {
-  background-color: #23d5ab;
+  background-color: #a1e4d4;
 }
 .Banned {
-  background-color: #e73c7e;
-}
-.inner-identifier-wrapper {
-  display: inline-flex;
-  width: 100%;
+  background-color: rgb(243, 101, 101);
 }
 
 .heading {
-  font-size: 1.8rem;
-  font-weight: 700;
-  font-family: "Exo 2", sans-serif;
-  margin-bottom: 1rem;
+  font-size: 1.7rem;
+  font-weight: 400;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: start;
 }
 .row.align-items-start {
   margin-left: 1rem !important;
@@ -57,13 +76,12 @@ h3 {
 }
 
 /* Scrolling */
-
 .scrolling-area {
-  width: 80%;
-
+  height: 60vh;
   overflow: auto;
-  padding: 1rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  overflow-x: hidden;
+  /* padding-left: 40px;
+  padding-right: 40px; */
 }
 
 .scrolling-element-inside {
@@ -77,19 +95,22 @@ h3 {
   font-size: 1.2em;
 }
 
-.dropdown-item.checkout-vehicle:hover {
-  background-color: #23a6d5;
+.dropdown-item:hover {
+  background-color: rgb(179, 179, 179);
   color: black;
 }
-.dropdown-item.unban-slot:hover {
-  background-color: #e73c7e;
-  color: black;
+.edit {
+  cursor: pointer;
 }
-.dropdown-item.park-vehicle:hover {
-  background-color: #23d5ab;
-  color: black;
+.edit:hover {
+  color: #06aaee;
 }
-.dropdown-item.ban-slot:hover {
-  background-color: rgb(234, 54, 26);
-  color: black;
+.parent {
+  width: 98%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.hide-dropdown {
+  padding: 0px;
+  border: 0px;
 }

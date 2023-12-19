@@ -1,8 +1,12 @@
 .row {
   margin: 0 !important;
+  background-color: #f2f2f2;
 }
 .col-md-2 {
-  height: 80vh;
+  height: 100vh;
+}
+.col-md-10 {
+  height: 100vh;
 }
 
 .alert-div {

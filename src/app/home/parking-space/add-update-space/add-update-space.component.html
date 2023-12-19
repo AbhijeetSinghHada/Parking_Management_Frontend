@@ -1,77 +1,73 @@
 <div class="background-blur" (click)="closeOverlay($event)">
   <div class="card" (click)="$event.stopImmediatePropagation()">
-    <div class="close-button grad" (click)="closeOverlay($event)">
+    <div class="close-button" (click)="closeOverlay($event)">
       <i class="fas fa-times"></i>
     </div>
-    <div class="grad-box-size grad">
-      <form #parkingFrom="ngForm" class="row p-4 form">
-        <div class="row g-3 mt-2">
-          <div class="col">
-            <p class="title-text">{{ functionalParkingDetails.formTitle }}</p>
-          </div>
+    <form #parkingForm="ngForm" class="row p-4 form">
+      <div class="row g-3 mt-2">
+        <div class="col">
+          <p class="title-text">{{ functionalParkingDetails.formTitle }}</p>
         </div>
-        <div class="row g-3 mt-2">
-          <div class="col">
-            <label for="parking-category" class="visually-hidden"
-              >Parking Category</label
-            >
-            <input
-              type="text"
-              class="form-control p-3"
-              id="parking-category"
-              placeholder="Parking Category"
-              required
-              name="parkingCategory"
-              [ngModel]="functionalParkingDetails.parkingCategory"
-            />
-          </div>
+      </div>
+      <div class="row g-3 mt-2">
+        <div class="col">
+          <label for="parking-category" class="visually-hidden"
+            >Parking Category</label
+          >
+          <input
+            type="text"
+            class="form-control p-3"
+            id="parking-category"
+            placeholder="Parking Category"
+            required
+            name="parkingCategory"
+            [ngModel]="functionalParkingDetails.parkingCategory"
+          />
         </div>
-        <div class="row g-3 mt-2">
-          <div class="col">
-            <label for="total-capacity" class="visually-hidden"
-              >Total Capacity</label
-            >
-            <input
-              type="number"
-              class="form-control p-3"
-              id="total-capacity"
-              placeholder="Total Capacity"
-              required
-              name="totalCapacity"
-              [ngModel]="functionalParkingDetails.totalCapacity"
-            />
-          </div>
+      </div>
+      <div class="row g-3 mt-2">
+        <div class="col">
+          <label for="total-capacity" class="visually-hidden"
+            >Total Capacity</label
+          >
+          <input
+            type="number"
+            class="form-control p-3"
+            id="total-capacity"
+            placeholder="Total Capacity"
+            required
+            name="totalCapacity"
+            [ngModel]="functionalParkingDetails.totalCapacity"
+          />
         </div>
-        <div class="row g-3 mt-2">
-          <div class="col">
-            <label for="charges" class="visually-hidden">Charges</label>
-            <input
-              type="number"
-              class="form-control p-3"
-              id="charges"
-              placeholder="Charges"
-              required
-              name="charges"
-              [ngModel]="functionalParkingDetails.charges"
-            />
-          </div>
+      </div>
+      <div class="row g-3 mt-2">
+        <div class="col">
+          <label for="charges" class="visually-hidden">Charges</label>
+          <input
+            type="number"
+            class="form-control p-3"
+            id="charges"
+            placeholder="Charges"
+            required
+            name="charges"
+            [ngModel]="functionalParkingDetails.charges"
+          />
         </div>
+      </div>
 
-        <div class="row g-3 mt-2">
-          <div class="col">
-            <button
-              type="submit"
-              class="mb-3 w-100 p-3 grad"
-              [disabled]="!parkingFrom.valid"
-              (click)="onSubmit(parkingFrom)"
-            >
-              {{
-                functionalParkingDetails.edit ? "Edit Parking" : "Add Parking"
-              }}
-            </button>
-          </div>
+      <div class="row g-3 mt-2">
+        <div class="col text-align-center button-general">
+          <button
+            type="submit"
+            class="mb-3 w-100"
+            [disabled]="!parkingForm.valid"
+            (click)="onSubmit(parkingForm)"
+          >
+            {{ functionalParkingDetails.edit ? "Edit Parking" : "Add Parking" }}
+          </button>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
 </div>

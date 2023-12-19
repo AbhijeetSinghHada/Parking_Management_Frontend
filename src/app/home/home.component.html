@@ -1,13 +1,7 @@
-<div class="row text-center mb-2">
-  <div class="col-md-2"><app-parking-space></app-parking-space></div>
-  <div class="col-md-10"><router-outlet></router-outlet></div>
+<div class="row text-center">
+  <div class="col-md-2 h-100 g-0"><app-parking-space></app-parking-space></div>
+  <div class="col-md-10 g-0 h-100"><router-outlet></router-outlet></div>
   <div class="col" *ngIf="toggleVehicleOverlay">
     <app-vehicle></app-vehicle>
-  </div>
-  <div class="col alert-div" *ngIf="toggleAlert">
-    <app-alert
-      (closeAlert)="toggleAlertComponent()"
-      [alertDetails]="alertDetails"
-    ></app-alert>
   </div>
 </div>

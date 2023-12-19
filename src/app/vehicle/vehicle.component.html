@@ -1,123 +1,117 @@
 <div class="background-blur" (click)="closeOverlay()">
   <div class="card" (click)="$event.stopImmediatePropagation()">
-    <div class="close-button grad" (click)="closeOverlay()">
-      <i class="fas fa-times"></i>
-    </div>
-    <div class="grad-box-size grad">
-      <form #vehicleForm="ngForm" class="row p-4 form">
-        <div class="row g-3 mt-2">
-          <div class="col-12">
-            <p class="title-text">Add Vehicle</p>
-          </div>
+    <form #vehicleForm="ngForm" class="row form">
+      <div class="col-12 close-button" (click)="closeOverlay()">
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="row g-3 mt-2">
+        <div class="col">
+          <p class="title-text">Add Vehicle</p>
         </div>
-        <div class="row g-3 mt-2">
-          <div class="col-12 vehicle-details-heading">Vehicle Details</div>
-          <div class="col">
-            <label for="vehicle-number" class="visually-hidden"
-              >Vehicle Number</label
-            >
-            <input
-              type="text"
-              class="form-control p-3"
-              id="vehicle-number"
-              placeholder="Vehicle Number"
-              required
-              name="vehicle_number"
-              pattern="[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}"
-              [ngModel]=""
-            />
-          </div>
-          <div class="col">
-            <label for="vehicle-type" class="visually-hidden"
-              >Vehicle Type</label
-            >
-            <select
-              class="form-select p-3"
-              aria-label="Default select example"
-              id="vehicle-type"
-              required
-              name="vehicle_type"
-              [ngModel]="parkingSpaceList[0].slot_type"
-            >
-              <option
-                [value]="item.slot_type"
-                *ngFor="let item of parkingSpaceList"
-              >
-                {{ item.slot_type }}
-              </option>
-            </select>
-          </div>
+      </div>
+      <div class="row g-3 mt-2">
+        <div class="col-12 vehicle-details-heading">Vehicle Details</div>
+        <div class="col">
+          <label for="vehicle-number" class="visually-hidden"
+            >Vehicle Number</label
+          >
+          <input
+            type="text"
+            class="form-control p-3"
+            id="vehicle-number"
+            placeholder="Vehicle Number"
+            required
+            name="vehicle_number"
+            pattern="[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}"
+            [ngModel]=""
+          />
         </div>
-        <div class="row g-3 mt-2" name="customer" ngModelGroup="customer">
-          <div class="col-12 customer-details-heading">Customer Details</div>
-          <div class="col-6">
-            <label for="customer-id" class="visually-hidden">Customer ID</label>
-            <input
-              type="text"
-              class="form-control p-3"
-              id="customer-id"
-              placeholder="Custmer ID"
-              name="id"
-              ngModel
-            />
-          </div>
-          <div class="col-6">
-            <label for="customer-name" class="visually-hidden"
-              >Customer Name</label
+        <div class="col">
+          <label for="vehicle-type" class="visually-hidden">Vehicle Type</label>
+          <select
+            class="form-select p-3"
+            aria-label="Default select example"
+            id="vehicle-type"
+            required
+            name="vehicle_type"
+            [ngModel]="parkingSpaceList[0].slot_type"
+          >
+            <option
+              [value]="item.slot_type"
+              *ngFor="let item of parkingSpaceList"
             >
-            <input
-              type="text"
-              class="form-control p-3"
-              id="customer-name"
-              required
-              placeholder="Customer Name"
-              name="name"
-              ngModel
-            />
-          </div>
-          <div class="col-6">
-            <label for="phone-number" class="visually-hidden"
-              >Phone Number</label
-            >
-            <input
-              type="number"
-              class="form-control p-3"
-              id="phone-number"
-              required
-              pattern="[0-9]{10}"
-              placeholder="Phone Number"
-              name="phone_number"
-              ngModel
-            />
-          </div>
-          <div class="col-6">
-            <label for="email" class="visually-hidden">Email</label>
-            <input
-              type="email"
-              class="form-control p-3"
-              id="email"
-              placeholder="Email"
-              email
-              required
-              name="email_address"
-              ngModel
-            />
-          </div>
+              {{ item.slot_type }}
+            </option>
+          </select>
         </div>
+      </div>
+      <div class="row g-3 mt-2" name="customer" ngModelGroup="customer">
+        <div class="col-12 customer-details-heading">Customer Details</div>
+        <div class="col-6">
+          <label for="customer-id" class="visually-hidden">Customer ID</label>
+          <input
+            type="text"
+            class="form-control p-3"
+            id="customer-id"
+            placeholder="Custmer ID"
+            name="id"
+            ngModel
+          />
+        </div>
+        <div class="col-6">
+          <label for="customer-name" class="visually-hidden"
+            >Customer Name</label
+          >
+          <input
+            type="text"
+            class="form-control p-3"
+            id="customer-name"
+            required
+            placeholder="Customer Name"
+            name="name"
+            ngModel
+          />
+        </div>
+        <div class="col-6">
+          <label for="phone-number" class="visually-hidden">Phone Number</label>
+          <input
+            type="number"
+            class="form-control p-3"
+            id="phone-number"
+            required
+            pattern="[0-9]{10}"
+            placeholder="Phone Number"
+            name="phone_number"
+            ngModel
+          />
+        </div>
+        <div class="col-6">
+          <label for="email" class="visually-hidden">Email</label>
+          <input
+            type="email"
+            class="form-control p-3"
+            id="email"
+            placeholder="Email"
+            email
+            required
+            name="email_address"
+            ngModel
+          />
+        </div>
+      </div>
 
-        <div class="row g-3 mt-2">
-          <div class="col">
-            <button
-              type="submit"
-              class="mb-3 w-100 p-3 grad"
-              [disabled]="!vehicleForm.valid"
-              (click)="onSubmit(vehicleForm)"
-            >
-              Add Vehicle
-            </button>
-          </div>
+      <div class="row g-3 mt-2">
+        <div class="col text-align-center button-general">
+          <button
+            type="submit"
+            class="mb-3 w-100"
+            [disabled]="!vehicleForm.valid"
+            (click)="onSubmit(vehicleForm)"
+          >
+            Add Vehicle
+          </button>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
 </div>

@@ -15,7 +15,7 @@ export class AuthService {
   user = new BehaviorSubject<User>(null);
   tokenExpirationTimer: any;
 
-  login(username: string, password: string) {
+  login(username: string, password: string, rememberMe: boolean) {
     return this.http
       .post('http://127.0.0.1:8000/login', {
         username: username,
@@ -30,7 +30,8 @@ export class AuthService {
             token.name,
             token.role,
             new Date(token.exp * 1000),
-            data['access_token']
+            data['access_token'],
+            rememberMe
           );
         })
       );
@@ -54,12 +55,16 @@ export class AuthService {
     name: string,
     roles: string[],
     expiresIn: Date,
-    token: string
+    token: string,
+    rememberMe: boolean
   ) {
     const user = new User(name, roles, expiresIn, token);
     this.user.next(user);
     this.autoLogout(expiresIn.getTime() - new Date().getTime());
-    localStorage.setItem('userData', JSON.stringify(user));
+    localStorage.removeItem('userData');
+    if (rememberMe) {
+      localStorage.setItem('userData', JSON.stringify(user));
+    }
   }
 
   autoLogin() {

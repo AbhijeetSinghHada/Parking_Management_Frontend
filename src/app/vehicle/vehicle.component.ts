@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ParkingSpaceService } from '../home/parking-space/parking-space.service';
 import { VehicleService } from './vehicle.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-vehicle',
@@ -12,7 +13,8 @@ export class VehicleComponent implements OnInit {
   parkingSpaceList;
   constructor(
     private parkingSpaceService: ParkingSpaceService,
-    private vehicleService: VehicleService
+    private vehicleService: VehicleService,
+    private messageService: MessageService
   ) {}
   ngOnInit(): void {
     this.parkingSpaceList = this.parkingSpaceService.listParkingSpace;
@@ -23,17 +25,12 @@ export class VehicleComponent implements OnInit {
   }
   onSubmit(form: NgForm) {
     console.log(form.value);
-    this.vehicleService.add_vehicle(form.value).subscribe(
-      (result) => {
-        setTimeout(() => {
-          this.closeOverlay();
-        }, 2000);
-      },
-      (error) => {
-        setTimeout(() => {
-          this.closeOverlay();
-        }, error.timeout);
-      }
-    );
+    this.vehicleService.add_vehicle(form.value).subscribe((result) => {
+      this.messageService.add({
+        severity: 'success',
+        detail: 'Vehicle Added Successfully',
+      });
+      this.closeOverlay();
+    });
   }
 }

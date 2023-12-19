@@ -14,13 +14,12 @@
         <span class="bar"></span>
       </div>
       <ul class="nav" [ngClass]="toggleMenuSideButton ? 'mobile-nav' : ''">
-        <li class="nav-item" *ngIf="!isAuthenticated">
-          <a [routerLink]="['/auth']">Login</a>
-        </li>
-        <li class="nav-item" *ngIf="isAuthenticated">
-          <a (click)="onVehicle()">Vehicle</a>
+        <li class="nav-item" *ngIf="isAuthenticated" (click)="onVehicle()">
+          <i class="fa-solid fa-car-on"></i>
+          <a> Vehicle</a>
         </li>
         <li class="nav-item logout" *ngIf="isAuthenticated">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
           <a (click)="onLogout()">Logout</a>
         </li>
       </ul>

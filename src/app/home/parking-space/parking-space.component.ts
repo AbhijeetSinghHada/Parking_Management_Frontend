@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ParkingSpaceService } from './parking-space.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-parking-space',
@@ -11,12 +12,17 @@ export class ParkingSpaceComponent {
   parkingSpaceList = [];
   selectedCategory: string;
   isOverlayOpen: boolean = false;
+  accessorUserRole: string[];
   constructor(
     private parkingSpaceService: ParkingSpaceService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {}
   ngOnInit() {
+    this.authService.user.subscribe((user) => {
+      this.accessorUserRole = user.roles;
+    });
     this.updateParkingSpace();
   }
   toggleOverlay() {
