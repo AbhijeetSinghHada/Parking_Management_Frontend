@@ -22,7 +22,6 @@ import { BrowserModule } from '@angular/platform-browser';
     HttpClientModule,
     BrowserAnimationsModule,
     ConfirmDialogModule,
-    AuthModule,
     AppRoutingModule,
   ],
   providers: [

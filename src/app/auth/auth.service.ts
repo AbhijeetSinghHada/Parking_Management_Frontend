@@ -61,7 +61,6 @@ export class AuthService {
     const user = new User(name, roles, expiresIn, token);
     this.user.next(user);
     this.autoLogout(expiresIn.getTime() - new Date().getTime());
-    localStorage.removeItem('userData');
     if (rememberMe) {
       localStorage.setItem('userData', JSON.stringify(user));
     }

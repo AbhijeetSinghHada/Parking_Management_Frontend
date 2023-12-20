@@ -8,7 +8,6 @@ import { HomeComponent } from './home.component';
 import { AddUpdateSpaceComponent } from './parking-space/add-update-space/add-update-space.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { BillComponent } from '../slots/unassign-slot/bill/bill.component';

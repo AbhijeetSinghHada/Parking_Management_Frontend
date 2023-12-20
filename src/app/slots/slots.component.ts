@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  ConfirmationService,
-  MessageService,
-  ConfirmEventType,
-} from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 import { SlotsService } from './slots.service';
 import { Slot } from './slot.model';

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignSlotService } from './assign-slot.service';
 import { MessageService } from 'primeng/api';
@@ -20,8 +20,6 @@ export class AssignSlotComponent {
   ngOnInit() {
     this.slotId = this.route.snapshot.params['slotId'];
     this.slotCategory = this.route.snapshot.pathFromRoot[3].params['category'];
-    console.log(this.slotCategory);
-    console.log(this.route.snapshot.pathFromRoot);
   }
   redirectBack() {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
