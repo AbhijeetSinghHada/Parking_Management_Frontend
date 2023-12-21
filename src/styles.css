@@ -105,7 +105,7 @@ button:active {
   height: auto;
   padding: 2rem;
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgb(255, 255, 255);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
