@@ -3,7 +3,6 @@ import {
   HttpHeaders,
   HttpInterceptor,
   HttpRequest,
-  HttpResponse,
 } from '@angular/common/http';
 import { catchError, exhaustMap, take, throwError } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
@@ -23,7 +22,7 @@ export class AuthInterceptorService implements HttpInterceptor {
         if (!user) {
           return next.handle(req).pipe(
             catchError((error) => {
-              return throwError(this.responseHandler.handleError(error));
+              return throwError(() => this.responseHandler.handleError(error));
             })
           );
         }
@@ -33,7 +32,7 @@ export class AuthInterceptorService implements HttpInterceptor {
         });
         return next.handle(newReq).pipe(
           catchError((error) => {
-            return throwError(this.responseHandler.handleError(error));
+            return throwError(() => this.responseHandler.handleError(error));
           })
         );
       })

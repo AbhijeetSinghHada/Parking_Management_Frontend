@@ -23,22 +23,3 @@ h3 {
 h5 {
   font-weight: 500;
 }
-.button-general {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  button {
-    width: 100px;
-    height: 40px;
-    border-radius: 10px;
-    border: none;
-    background-color: #f8fbff;
-    color: #59c8f5;
-    font-weight: 600;
-    cursor: pointer;
-    &:hover {
-      background-color: #59c8f5;
-      color: #f8fbff;
-    }
-  }
-}

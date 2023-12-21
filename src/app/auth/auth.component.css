@@ -62,14 +62,6 @@ label {
   padding: 0px;
 }
 
-.grad {
-  /* border-radius: 30px; */
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  -webkit-animation: gradbar 15s ease infinite;
-  -moz-animation: gradbar 15s ease infinite;
-  animation: gradbar 15s ease infinite;
-}
 .form {
   background: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -78,39 +70,4 @@ label {
 .img-fluid {
   margin-left: 20px;
   margin-top: 20px;
-}
-@-webkit-keyframes gradbar {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@-moz-keyframes gradbar {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes gradbar {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }

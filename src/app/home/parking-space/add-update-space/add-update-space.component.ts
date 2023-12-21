@@ -1,4 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   ParkingSpaceService,
   parkingSpaceFunctionalDetails,
@@ -12,37 +18,40 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './add-update-space.component.html',
   styleUrls: ['add-update-space.component.css'],
 })
-export class AddUpdateSpaceComponent implements OnInit {
+export class AddUpdateSpaceComponent implements OnInit, OnDestroy {
   @Output() closeOverlayEvent = new EventEmitter<void>();
   functionalParkingDetails: parkingSpaceFunctionalDetails;
+  parkingServiceSubscription: Subscription;
+  selectedParkingSubscription: Subscription;
   constructor(
     private parkingSpaceService: ParkingSpaceService,
-    private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.parkingSpaceService.parkingSpaceDetails
-      .pipe(
-        take(1),
-        tap((parkingSpaceDetails) => {
-          this.functionalParkingDetails = parkingSpaceDetails;
-        })
-      )
-      .subscribe();
-    if (this.functionalParkingDetails.edit) {
-      this.parkingSpaceService.selectedParkingSpace
+    this.parkingServiceSubscription =
+      this.parkingSpaceService.parkingSpaceDetails
         .pipe(
           take(1),
-          map((parkingSpace) => {
-            this.functionalParkingDetails.parkingCategory =
-              parkingSpace.slot_type;
-            this.functionalParkingDetails.totalCapacity =
-              parkingSpace.total_capacity;
-            this.functionalParkingDetails.charges = parkingSpace.charge;
+          tap((parkingSpaceDetails) => {
+            this.functionalParkingDetails = parkingSpaceDetails;
           })
         )
         .subscribe();
+    if (this.functionalParkingDetails.edit) {
+      this.selectedParkingSubscription =
+        this.parkingSpaceService.selectedParkingSpace
+          .pipe(
+            take(1),
+            map((parkingSpace) => {
+              this.functionalParkingDetails.parkingCategory =
+                parkingSpace.slot_type;
+              this.functionalParkingDetails.totalCapacity =
+                parkingSpace.total_capacity;
+              this.functionalParkingDetails.charges = parkingSpace.charge;
+            })
+          )
+          .subscribe();
     }
   }
   onSubmit(form: NgForm) {
@@ -82,5 +91,9 @@ export class AddUpdateSpaceComponent implements OnInit {
   closeOverlay(event) {
     event.preventDefault();
     this.closeOverlayEvent.emit();
+  }
+  ngOnDestroy(): void {
+    this.parkingServiceSubscription.unsubscribe();
+    this.selectedParkingSubscription.unsubscribe();
   }
 }

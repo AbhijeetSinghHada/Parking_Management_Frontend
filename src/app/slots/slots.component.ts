@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 import { SlotsService } from './slots.service';
@@ -13,12 +13,13 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./slots.component.css'],
   providers: [ConfirmationService],
 })
-export class SlotsComponent {
+export class SlotsComponent implements OnInit {
   slots: Slot[] = null;
   accessorUserRole: string[];
   parkingCategory: string;
-  isAddUpdateOverlayOpen: boolean = false;
+  isAddUpdateOverlayOpen = false;
   selectedCategoryDetails: any = null;
+
   constructor(
     private slotsService: SlotsService,
     private route: ActivatedRoute,
@@ -28,11 +29,11 @@ export class SlotsComponent {
     private messageService: MessageService,
     private authService: AuthService
   ) {}
+
   ngOnInit() {
     this.authService.user.subscribe((user) => {
       this.accessorUserRole = user.roles;
     });
-    this.parkingCategory = this.route.snapshot.params['category'];
     this.route.params.subscribe((params: Params) => {
       this.parkingCategory = params['category'];
       this.getSlots(this.parkingCategory);
@@ -48,6 +49,7 @@ export class SlotsComponent {
       this.slots = [...data];
     });
   }
+
   onEditParkingSpace() {
     this.parkingSpaceService.parkingSpaceDetails.next({
       edit: true,
@@ -58,6 +60,7 @@ export class SlotsComponent {
     });
     this.toggleAddUpdateOverlay();
   }
+
   onParkVehicle(slot) {
     this.router.navigate([slot.slot_id, 'assign'], { relativeTo: this.route });
   }
@@ -65,6 +68,7 @@ export class SlotsComponent {
   toggleAddUpdateOverlay() {
     this.isAddUpdateOverlayOpen = !this.isAddUpdateOverlayOpen;
   }
+
   onCheckoutVehicle() {
     this.router.navigate(['unassign'], {
       relativeTo: this.route,
@@ -72,6 +76,7 @@ export class SlotsComponent {
       onSameUrlNavigation: 'reload',
     });
   }
+
   onBanSlot(event, slot) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
@@ -85,35 +90,12 @@ export class SlotsComponent {
       rejectIcon: 'none',
       rejectButtonStyleClass: 'p-button-text',
       accept: () => {
-        this.slotsService
-          .banSlot(slot.slot_id, this.selectedCategoryDetails.slot_type)
-          .subscribe(
-            (data) => {
-              this.messageService.add({
-                severity: 'success',
-                summary: 'Success',
-                detail: 'Slot has been banned successfully',
-              });
-            },
-            (error) => {
-              const errorDetails = error.error.error;
-              const message = errorDetails.message;
-              this.messageService.add({
-                severity: 'error',
-                summary: errorDetails,
-                detail: message,
-              });
-            }
-          );
-        this.router
-          .navigateByUrl('/', { skipLocationChange: true })
-          .then(() => {
-            this.router.navigate([decodeURI(this.router.url)]);
-          });
+        this.updateSlotStatus(slot.slot_id, 'ban');
       },
       reject: this.reject.bind(this),
     });
   }
+
   onUnBanSlot(event, slot) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
@@ -127,28 +109,30 @@ export class SlotsComponent {
       rejectIcon: 'none',
       rejectButtonStyleClass: 'p-button-text',
       accept: () => {
-        this.slotsService
-          .unbanSlot(slot.slot_id, this.selectedCategoryDetails.slot_type)
-          .subscribe(
-            (data) => {
-              this.messageService.add({
-                severity: 'success',
-                summary: 'Success',
-                detail: 'Slot has been Un-Banned successfully',
-              });
-            },
-            (error) => {
-              this.errorHandler(error);
-            }
-          );
-        this.router
-          .navigateByUrl('/', { skipLocationChange: true })
-          .then(() => {
-            this.router.navigate([decodeURI(this.router.url)]);
-          });
+        this.updateSlotStatus(slot.slot_id, 'unban');
       },
       reject: this.reject.bind(this),
     });
+  }
+
+  updateSlotStatus(slotId: string, status: string) {
+    const slotType = this.selectedCategoryDetails.slot_type;
+    const action = status === 'ban' ? 'banned' : 'Un-Banned';
+    const successMessage = `Slot has been ${action} successfully`;
+
+    this.slotsService.updateSlotStatus(slotId, slotType, status).subscribe(
+      (data) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: successMessage,
+        });
+        this.refreshPage();
+      },
+      (error) => {
+        this.errorHandler(error);
+      }
+    );
   }
 
   errorHandler(error) {
@@ -160,5 +144,12 @@ export class SlotsComponent {
       detail: message,
     });
   }
+
   reject() {}
+
+  private refreshPage() {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([decodeURI(this.router.url)]);
+    });
+  }
 }

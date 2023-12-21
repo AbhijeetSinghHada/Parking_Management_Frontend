@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
-import { ResponseHandlerService } from 'src/app/shared/error-handler.service';
+import { BehaviorSubject, tap } from 'rxjs';
 
 export type parkingSpaceFunctionalDetails = {
   edit: boolean;
@@ -26,10 +25,7 @@ export class ParkingSpaceService {
     null
   );
   listParkingSpace: any[];
-  constructor(
-    private http: HttpClient,
-    private responseHandler: ResponseHandlerService
-  ) {}
+  constructor(private http: HttpClient) {}
   getParkingSpace() {
     return this.http.get('http://127.0.0.1:8000/parkingspace').pipe(
       tap((data: any[]) => {

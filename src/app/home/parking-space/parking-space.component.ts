@@ -39,21 +39,6 @@ export class ParkingSpaceComponent {
     this.updateParkingSpace();
     this.toggleOverlay();
   }
-  getColor(index: number) {
-    let colorList = [
-      '--accent-color: #23a6d5',
-      '--accent-color: #ffc107',
-      '--accent-color: #fd7e14',
-      '--accent-color: #6610f2',
-      '--accent-color: #6f42c1',
-      '--accent-color: #d63384',
-      '--accent-color: #dc3545',
-      '--accent-color: #20c997',
-      '--accent-color: #198754',
-    ];
-
-    return colorList[index % colorList.length];
-  }
 
   updateParkingSpace() {
     this.parkingSpaceService.getParkingSpace().subscribe((data: Object[]) => {
