@@ -1,15 +1,15 @@
 <div class="row">
-  <h3 class="col text-align-center">Bill</h3>
+  <h3 class="col text-align-center">{{ constants.BILL }}</h3>
 </div>
 <div class="row">
-  <h5 class="col text-align-center">Customer Details</h5>
+  <h5 class="col text-align-center">{{ constants.CUSTOMER_DETAILS }}</h5>
 </div>
 <div class="row details-container">
   <div class="left-side">
-    <div>Customer ID :</div>
-    <div>Name :</div>
-    <div>Email :</div>
-    <div>Phone Number :</div>
+    <div>{{ constants.CUSTOMER_ID }} :</div>
+    <div>{{ constants.CUSTOMER_NAME }} :</div>
+    <div>{{ constants.CUSTOMER_EMAIL }} :</div>
+    <div>{{ constants.CUSTOMER_PHONE }} :</div>
   </div>
   <div class="right-side">
     <div>{{ billDetails.bill.customer.cutomer_id }}</div>
@@ -19,17 +19,17 @@
   </div>
 </div>
 <div class="row">
-  <h5 class="col text-align-center">Vehicle Details</h5>
+  <h5 class="col text-align-center">{{ constants.VEHICLE_DETAILS }}</h5>
 </div>
 <div class="row details-container">
   <div class="left-side">
-    <div>Slot Number :</div>
-    <div>Vehicle Number :</div>
-    <div>Vehicle Type :</div>
-    <div>Charges Per Hour :</div>
-    <div>Check In :</div>
-    <div>Check Out :</div>
-    <div>Total Charges :</div>
+    <div>{{ constants.SLOT_NUMBER }} :</div>
+    <div>{{ constants.VEHICLE_NUMBER }} :</div>
+    <div>{{ constants.VEHICLE_TYPE }} :</div>
+    <div>{{ constants.SLOT_CHARGES }} :</div>
+    <div>{{ constants.CHECKIN_TIME }} :</div>
+    <div>{{ constants.CHECKOUT_TIME }} :</div>
+    <div>{{ constants.TOTAL_CHARGES }} :</div>
   </div>
   <div class="right-side">
     <div>{{ billDetails.slot.slot_number }}</div>
@@ -43,11 +43,11 @@
 </div>
 <div class="row">
   <h5 class="col text-align-center">
-    Thank you for Visiting. Have a nice day!
+    {{ constants.THANKING_TEXT }}
   </h5>
 </div>
 <div class="row">
   <div class="col text-align-center button-general">
-    <button (click)="redirectBack()">Go Back</button>
+    <button (click)="redirectBack()">{{ constants.GO_BACK }}</button>
   </div>
 </div>

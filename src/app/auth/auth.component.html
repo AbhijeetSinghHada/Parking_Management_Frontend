@@ -8,16 +8,16 @@
       >
         <div class="row g-3 mt-2">
           <div class="col-12">
-            <p class="login-heading">Welcome Back!</p>
+            <p class="login-heading">{{ constants.WELCOME }}</p>
           </div>
           <div class="col-12">
-            <p class="login-text">Login to your account</p>
+            <p class="login-text">{{ constants.LOGIN_TEXT }}</p>
           </div>
           <div class="divider"></div>
         </div>
         <div class="row g-3 mt-2">
           <div class="col">
-            <label for="username">Username</label>
+            <label for="username">{{ constants.USERNAME }}</label>
             <input
               type="text"
               class="form-control p-3"
@@ -31,7 +31,7 @@
         </div>
         <div class="row g-3 mt-2">
           <div class="col">
-            <label for="Password">Password</label>
+            <label for="Password">{{ constants.PASSWORD }}</label>
             <input
               type="password"
               class="form-control p-3"
@@ -52,7 +52,9 @@
               value="Remember Me"
               ngModel
             />
-            <label class="remember-me" for="remember">Remember Me</label>
+            <label class="remember-me" for="remember">{{
+              constants.REMEMBER_ME
+            }}</label>
           </div>
           <div class="col-12 button-general">
             <button
@@ -61,7 +63,7 @@
               class="btn mb-3"
               [disabled]="!authFrom.valid"
             >
-              Login
+              {{ constants.LOGIN }}
             </button>
           </div>
         </div>

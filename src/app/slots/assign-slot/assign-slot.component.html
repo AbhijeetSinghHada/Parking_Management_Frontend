@@ -7,12 +7,14 @@
     <form #assignSlotForm="ngForm" class="row p-4 form">
       <div class="row g-3 mt-2">
         <div class="col">
-          <p class="title-text">Park Vehicle</p>
+          <p class="title-text">{{ constants.PARK_VEHICLE }}</p>
         </div>
       </div>
       <div class="row g-3 mt-2">
         <div class="col">
-          <label for="slot-id" class="visually-hidden">Slot ID</label>
+          <label for="slot-id" class="visually-hidden">{{
+            constants.SLOT_NUMBER
+          }}</label>
           <input
             type="number"
             class="form-control p-3"
@@ -27,9 +29,9 @@
       </div>
       <div class="row g-3 mt-2">
         <div class="col">
-          <label for="slot-category" class="visually-hidden"
-            >Slot Category</label
-          >
+          <label for="slot-category" class="visually-hidden">{{
+            constants.SLOT_CATEGORY
+          }}</label>
           <input
             type="text"
             class="form-control p-3"
@@ -45,9 +47,9 @@
 
       <div class="row g-3 mt-2">
         <div class="col">
-          <label for="vehicle-number" class="visually-hidden"
-            >Vehicle Number</label
-          >
+          <label for="vehicle-number" class="visually-hidden">{{
+            constants.VEHICLE_NUMBER
+          }}</label>
           <input
             type="text"
             class="form-control p-3"
@@ -69,7 +71,7 @@
             [disabled]="!assignSlotForm.valid"
             (click)="onSubmit(assignSlotForm)"
           >
-            Assign
+            {{ constants.ASSIGN }}
           </button>
         </div>
       </div>

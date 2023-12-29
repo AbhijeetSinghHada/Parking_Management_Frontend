@@ -6,15 +6,17 @@
       </div>
       <div class="row g-3 mt-2">
         <div class="col">
-          <p class="title-text">Add Vehicle</p>
+          <p class="title-text">{{ config.constants.ADD_VEHICLE }}</p>
         </div>
       </div>
       <div class="row g-3 mt-2">
-        <div class="col-12 vehicle-details-heading">Vehicle Details</div>
+        <div class="col-12 vehicle-details-heading">
+          {{ config.constants.VEHICLE_DETAILS }}
+        </div>
         <div class="col">
-          <label for="vehicle-number" class="visually-hidden"
-            >Vehicle Number</label
-          >
+          <label for="vehicle-number" class="visually-hidden">{{
+            config.constants.VEHICLE_NUMBER
+          }}</label>
           <input
             type="text"
             class="form-control p-3"
@@ -27,7 +29,9 @@
           />
         </div>
         <div class="col">
-          <label for="vehicle-type" class="visually-hidden">Vehicle Type</label>
+          <label for="vehicle-type" class="visually-hidden">{{
+            config.constants.VEHICLE_TYPE
+          }}</label>
           <select
             class="form-select p-3"
             aria-label="Default select example"
@@ -46,9 +50,13 @@
         </div>
       </div>
       <div class="row g-3 mt-2" name="customer" ngModelGroup="customer">
-        <div class="col-12 customer-details-heading">Customer Details</div>
+        <div class="col-12 customer-details-heading">
+          {{ config.constants.CUSTOMER_DETAILS }}
+        </div>
         <div class="col-6">
-          <label for="customer-id" class="visually-hidden">Customer ID</label>
+          <label for="customer-id" class="visually-hidden">{{
+            config.constants.CUSTOMER_ID
+          }}</label>
           <input
             type="text"
             class="form-control p-3"
@@ -59,9 +67,9 @@
           />
         </div>
         <div class="col-6">
-          <label for="customer-name" class="visually-hidden"
-            >Customer Name</label
-          >
+          <label for="customer-name" class="visually-hidden">{{
+            config.constants.CUSTOMER_NAME
+          }}</label>
           <input
             type="text"
             class="form-control p-3"
@@ -73,7 +81,9 @@
           />
         </div>
         <div class="col-6">
-          <label for="phone-number" class="visually-hidden">Phone Number</label>
+          <label for="phone-number" class="visually-hidden">{{
+            config.constants.CUSTOMER_PHONE
+          }}</label>
           <input
             type="number"
             class="form-control p-3"
@@ -86,7 +96,9 @@
           />
         </div>
         <div class="col-6">
-          <label for="email" class="visually-hidden">Email</label>
+          <label for="email" class="visually-hidden">{{
+            config.constants.CUSTOMER_EMAIL
+          }}</label>
           <input
             type="email"
             class="form-control p-3"
@@ -108,7 +120,7 @@
             [disabled]="!vehicleForm.valid"
             (click)="onSubmit(vehicleForm)"
           >
-            Add Vehicle
+            {{ config.constants.ADD_VEHICLE }}
           </button>
         </div>
       </div>

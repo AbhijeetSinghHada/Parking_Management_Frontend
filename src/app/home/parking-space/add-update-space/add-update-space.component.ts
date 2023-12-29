@@ -8,10 +8,11 @@ import {
 import {
   ParkingSpaceService,
   parkingSpaceFunctionalDetails,
-} from '../parking-space.service';
+} from '../service/parking-space.service';
 import { Subscription, map, take, tap } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { constants } from 'src/app/shared/config';
 
 @Component({
   selector: 'app-update-add-space',
@@ -19,6 +20,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['add-update-space.component.css'],
 })
 export class AddUpdateSpaceComponent implements OnInit, OnDestroy {
+  constants: { [key: string]: string } = constants;
   @Output() closeOverlayEvent = new EventEmitter<void>();
   functionalParkingDetails: parkingSpaceFunctionalDetails;
   parkingServiceSubscription: Subscription;

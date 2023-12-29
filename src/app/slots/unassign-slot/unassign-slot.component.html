@@ -6,15 +6,15 @@
     <form #unassignSlotForm="ngForm" class="row form" *ngIf="!billDetails">
       <div class="row g-3">
         <div class="col">
-          <p class="title-text">Checkout Vehicle</p>
+          <p class="title-text">{{ constants.CHECKOUT_VEHICLE }}</p>
         </div>
       </div>
 
       <div class="row g-3 mt-1">
         <div class="col">
-          <label for="vehicle-number" class="visually-hidden"
-            >Vehicle Number</label
-          >
+          <label for="vehicle-number" class="visually-hidden">{{
+            constants.VEHICLE_NUMBER
+          }}</label>
           <input
             type="text"
             class="form-control p-3"
@@ -36,7 +36,7 @@
             [disabled]="!unassignSlotForm.valid"
             (click)="onSubmit(unassignSlotForm)"
           >
-            Checkout
+            {{ constants.CHECKOUT }}
           </button>
         </div>
       </div>

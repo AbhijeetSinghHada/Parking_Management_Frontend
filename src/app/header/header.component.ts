@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { VehicleService } from '../vehicle/vehicle.service';
+import { VehicleService } from '../vehicle/service/vehicle.service';
+import { constants } from '../shared/config';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +10,7 @@ import { VehicleService } from '../vehicle/vehicle.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  constants: { [key: string]: string } = constants;
   toggleMenuSideButton = false;
   private userSub: Subscription;
   isAuthenticated = false;

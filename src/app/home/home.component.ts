@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { VehicleService } from '../vehicle/vehicle.service';
+import { VehicleService } from '../vehicle/service/vehicle.service';
 
 @Component({
   selector: 'app-home',

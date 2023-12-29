@@ -4,6 +4,7 @@ import { BehaviorSubject, tap } from 'rxjs';
 import { User } from '../shared/user.model';
 import { HelperService } from '../shared/helper.service';
 import { Router } from '@angular/router';
+import * as config from '../shared/config';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -17,7 +18,7 @@ export class AuthService {
 
   login(username: string, password: string, rememberMe: boolean) {
     return this.http
-      .post('http://127.0.0.1:8000/login', {
+      .post(`${config.BaseURL}/login`, {
         username: username,
         password: password,
       })

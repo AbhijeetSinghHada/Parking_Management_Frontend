@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ParkingSpaceService } from '../home/parking-space/parking-space.service';
-import { VehicleService } from './vehicle.service';
+import {
+  ParkingSpaceService,
+  parkingSpace,
+} from '../home/parking-space/service/parking-space.service';
+import { VehicleService } from './service/vehicle.service';
 import { MessageService } from 'primeng/api';
+import * as config from 'src/app/shared/config';
 
 @Component({
   selector: 'app-vehicle',
@@ -10,7 +14,8 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./vehicle.component.css'],
 })
 export class VehicleComponent implements OnInit {
-  parkingSpaceList;
+  parkingSpaceList: parkingSpace[];
+  config = config;
   constructor(
     private parkingSpaceService: ParkingSpaceService,
     private vehicleService: VehicleService,
@@ -18,17 +23,15 @@ export class VehicleComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.parkingSpaceList = this.parkingSpaceService.listParkingSpace;
-    console.log(this.parkingSpaceList);
   }
-  closeOverlay() {
+  closeOverlay(): void {
     this.vehicleService.vehicleOverlayToggle.next(false);
   }
   onSubmit(form: NgForm) {
-    console.log(form.value);
     this.vehicleService.add_vehicle(form.value).subscribe((result) => {
       this.messageService.add({
         severity: 'success',
-        detail: 'Vehicle Added Successfully',
+        detail: result.message,
       });
       this.closeOverlay();
     });

@@ -1,6 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
+import * as config from '../shared/config';
+import { Slot } from './slot.model';
+
+export interface SlotUpdate {
+  slot_type: string;
+  slot_number: number;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -8,9 +15,9 @@ import { catchError, throwError } from 'rxjs';
 export class SlotsService {
   constructor(private http: HttpClient) {}
 
-  getSlotTable(slot_type: string) {
+  getSlotTable(slot_type: string): Observable<Slot[]> {
     return this.http
-      .get('http://127.0.0.1:8000/slots', {
+      .get<Slot[]>(`${config.BaseURL}/slots`, {
         params: new HttpParams().append('slot_type', slot_type),
       })
       .pipe(
@@ -19,10 +26,14 @@ export class SlotsService {
         })
       );
   }
-  updateSlotStatus(slot_number: string, slot_type: string, status: string) {
-    return this.http.post(`http://127.0.0.1:8000/slots/${status}`, {
+  updateSlotStatus(
+    slot_number: number,
+    slot_type: string,
+    status: string
+  ): Observable<SlotUpdate> {
+    return this.http.post<SlotUpdate>(`${config.BaseURL}/slots/${status}`, {
       slot_type: slot_type,
-      slot_number: parseInt(slot_number),
+      slot_number: slot_number,
     });
   }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { constants } from '../shared/config';
 
 @Component({
   selector: 'app-auth',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent {
+  constants: { [key: string]: string } = constants;
   isLoading: boolean = false;
   constructor(private authService: AuthService, private router: Router) {}
   ngOnInit() {

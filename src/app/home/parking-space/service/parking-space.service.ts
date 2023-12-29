@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
+import * as config from 'src/app/shared/config';
 
 export type parkingSpaceFunctionalDetails = {
   edit: boolean;
@@ -27,23 +28,17 @@ export class ParkingSpaceService {
   listParkingSpace: any[];
   constructor(private http: HttpClient) {}
   getParkingSpace() {
-    return this.http.get('http://127.0.0.1:8000/parkingspace').pipe(
+    return this.http.get(`${config.BaseURL}/parkingspace`).pipe(
       tap((data: any[]) => {
         this.listParkingSpace = data;
       })
     );
   }
   addParkingSpace(parkingSpace: parkingSpace) {
-    return this.http.post(
-      'http://127.0.0.1:8000/parkingspace/add',
-      parkingSpace
-    );
+    return this.http.post(`${config.BaseURL}/parkingspace/add`, parkingSpace);
   }
 
   updateParkingSpace(parkingSpace: parkingSpace) {
-    return this.http.put(
-      'http://127.0.0.1:8000/parkingspace/update',
-      parkingSpace
-    );
+    return this.http.put(`${config.BaseURL}/parkingspace/update`, parkingSpace);
   }
 }

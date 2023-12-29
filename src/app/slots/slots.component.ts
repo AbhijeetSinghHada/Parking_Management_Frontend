@@ -4,8 +4,13 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { SlotsService } from './slots.service';
 import { Slot } from './slot.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ParkingSpaceService } from '../home/parking-space/parking-space.service';
+import {
+  ParkingSpaceService,
+  parkingSpace,
+} from '../home/parking-space/service/parking-space.service';
 import { AuthService } from '../auth/auth.service';
+import { constants } from '../shared/config';
+import { User } from '../shared/user.model';
 
 @Component({
   selector: 'app-slots',
@@ -18,8 +23,8 @@ export class SlotsComponent implements OnInit {
   accessorUserRole: string[];
   parkingCategory: string;
   isAddUpdateOverlayOpen = false;
-  selectedCategoryDetails: any = null;
-
+  selectedCategoryDetails: parkingSpace = null;
+  constants: { [key: string]: string } = constants;
   constructor(
     private slotsService: SlotsService,
     private route: ActivatedRoute,
@@ -30,8 +35,8 @@ export class SlotsComponent implements OnInit {
     private authService: AuthService
   ) {}
 
-  ngOnInit() {
-    this.authService.user.subscribe((user) => {
+  ngOnInit(): void {
+    this.authService.user.subscribe((user: User) => {
       this.accessorUserRole = user.roles;
     });
     this.route.params.subscribe((params: Params) => {
@@ -39,18 +44,20 @@ export class SlotsComponent implements OnInit {
       this.getSlots(this.parkingCategory);
     });
 
-    this.parkingSpaceService.selectedParkingSpace.subscribe((data) => {
-      this.selectedCategoryDetails = data;
-    });
+    this.parkingSpaceService.selectedParkingSpace.subscribe(
+      (data: parkingSpace) => {
+        this.selectedCategoryDetails = data;
+      }
+    );
   }
 
-  getSlots(category: string) {
+  getSlots(category: string): void {
     this.slotsService.getSlotTable(category).subscribe((data: Slot[]) => {
       this.slots = [...data];
     });
   }
 
-  onEditParkingSpace() {
+  onEditParkingSpace(): void {
     this.parkingSpaceService.parkingSpaceDetails.next({
       edit: true,
       formTitle: 'Edit Parking Space',
@@ -61,15 +68,15 @@ export class SlotsComponent implements OnInit {
     this.toggleAddUpdateOverlay();
   }
 
-  onParkVehicle(slot) {
+  onParkVehicle(slot: Slot): void {
     this.router.navigate([slot.slot_id, 'assign'], { relativeTo: this.route });
   }
 
-  toggleAddUpdateOverlay() {
+  toggleAddUpdateOverlay(): void {
     this.isAddUpdateOverlayOpen = !this.isAddUpdateOverlayOpen;
   }
 
-  onCheckoutVehicle() {
+  onCheckoutVehicle(): void {
     this.router.navigate(['unassign'], {
       relativeTo: this.route,
       skipLocationChange: true,
@@ -77,7 +84,7 @@ export class SlotsComponent implements OnInit {
     });
   }
 
-  onBanSlot(event, slot) {
+  onBanSlot(event, slot: Slot): void {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: `Are you sure that you want to Ban Slot Number: ${slot.slot_id}?`,
@@ -92,11 +99,10 @@ export class SlotsComponent implements OnInit {
       accept: () => {
         this.updateSlotStatus(slot.slot_id, 'ban');
       },
-      reject: this.reject.bind(this),
     });
   }
 
-  onUnBanSlot(event, slot) {
+  onUnBanSlot(event, slot: Slot): void {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: `Are you sure that you want to Un-Ban Slot Number: ${slot.slot_id}?`,
@@ -111,13 +117,12 @@ export class SlotsComponent implements OnInit {
       accept: () => {
         this.updateSlotStatus(slot.slot_id, 'unban');
       },
-      reject: this.reject.bind(this),
     });
   }
 
-  updateSlotStatus(slotId: string, status: string) {
+  updateSlotStatus(slotId: number, status: string): void {
     const slotType = this.selectedCategoryDetails.slot_type;
-    const action = status === 'ban' ? 'banned' : 'Un-Banned';
+    const action = status === 'ban' ? 'Banned' : 'Un-Banned';
     const successMessage = `Slot has been ${action} successfully`;
 
     this.slotsService.updateSlotStatus(slotId, slotType, status).subscribe(
@@ -135,7 +140,7 @@ export class SlotsComponent implements OnInit {
     );
   }
 
-  errorHandler(error) {
+  errorHandler(error: any): void {
     const errorDetails = error.error.error;
     const message = errorDetails.message;
     this.messageService.add({
@@ -145,9 +150,7 @@ export class SlotsComponent implements OnInit {
     });
   }
 
-  reject() {}
-
-  private refreshPage() {
+  private refreshPage(): void {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([decodeURI(this.router.url)]);
     });

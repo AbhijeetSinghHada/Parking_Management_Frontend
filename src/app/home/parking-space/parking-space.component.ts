@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { ParkingSpaceService } from './parking-space.service';
+import { ParkingSpaceService } from './service/parking-space.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-
+import { constants } from 'src/app/shared/config';
 @Component({
   selector: 'app-parking-space',
   templateUrl: './parking-space.component.html',
   styleUrls: ['./parking-space.component.css'],
 })
 export class ParkingSpaceComponent {
+  constants: { [key: string]: string } = constants;
   parkingSpaceList = [];
   selectedCategory: string;
   isOverlayOpen: boolean = false;

@@ -1,3 +1,3 @@
 export class Slot {
-  constructor(public solt_id: number, public status: string) {}
+  constructor(public slot_id: number, public status: string) {}
 }

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UnassignSlotService } from './unassign-slot.service';
 import { MessageService } from 'primeng/api';
+import { constants } from 'src/app/shared/config';
+import { Bill } from './bill/bill.interface';
 
 @Component({
   selector: 'app-unassign-slot',
@@ -10,26 +12,8 @@ import { MessageService } from 'primeng/api';
 })
 export class UnassignSlotComponent {
   slotId: string = null;
-  billDetails: {
-    slot: {
-      slot_number: number;
-      vehicle_number: string;
-      vehicle_type: string;
-      slot_charges: number;
-      bill_id: number;
-    };
-    bill: {
-      customer: {
-        cutomer_id: number;
-        name: string;
-        email_address: string;
-        phone_number: string;
-      };
-      time_in: string;
-      time_out: string;
-      total_charges: number;
-    };
-  } = null;
+  constants: { [key: string]: string } = constants;
+  billDetails: Bill = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,7 +30,7 @@ export class UnassignSlotComponent {
   onSubmit(unassignSlotForm) {
     this.unassginSlotService
       .unAssignSlot(unassignSlotForm.value.vehicle_number)
-      .subscribe((data: any) => {
+      .subscribe((data: Bill) => {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
