@@ -5,7 +5,7 @@ import {
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from 'src/app/auth/service/auth.service';
 import { ParkingSpaceComponent } from './parking-space.component';
 import {
   ParkingSpaceService,
@@ -44,6 +44,9 @@ describe('Parking Space Component', () => {
       },
       {
         selectedParkingSpace: {
+          next: jasmine.createSpy('next'),
+        },
+        parkingSpaceDetails: {
           next: jasmine.createSpy('next'),
         },
       }
@@ -116,6 +119,24 @@ describe('Parking Space Component', () => {
       expect(
         mockParkingSpaceService.selectedParkingSpace.next
       ).toHaveBeenCalledWith(parkingSpaceTestList[1]);
+    });
+  });
+  describe('onAddParkingSpace Function', () => {
+    it('should call parkingSpaceService.parkingSpaceDetails.next', () => {
+      spyOn(component, 'updateParkingSpace');
+      spyOn(component, 'toggleOverlay');
+      component.onAddParkingSpace();
+      expect(
+        mockParkingSpaceService.parkingSpaceDetails.next
+      ).toHaveBeenCalledWith({
+        edit: false,
+        formTitle: 'Add Parking Space',
+        parkingCategory: '',
+        totalCapacity: null,
+        charges: null,
+      });
+      expect(component.updateParkingSpace).toHaveBeenCalled();
+      expect(component.toggleOverlay).toHaveBeenCalled();
     });
   });
 });

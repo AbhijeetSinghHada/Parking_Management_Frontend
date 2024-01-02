@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from './auth.service';
+import { AuthService } from './service/auth.service';
 import { Router } from '@angular/router';
 import { constants } from '../shared/config';
 

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ParkingSpaceService } from './service/parking-space.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from 'src/app/auth/service/auth.service';
 import { constants } from 'src/app/shared/config';
 @Component({
   selector: 'app-parking-space',

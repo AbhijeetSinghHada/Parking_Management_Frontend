@@ -8,7 +8,7 @@ import {
   ParkingSpaceService,
   parkingSpace,
 } from '../home/parking-space/service/parking-space.service';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../auth/service/auth.service';
 import { constants } from '../shared/config';
 import { User } from '../shared/user.model';
 

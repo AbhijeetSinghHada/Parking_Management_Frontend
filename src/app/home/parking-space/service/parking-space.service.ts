@@ -4,11 +4,11 @@ import { BehaviorSubject, tap } from 'rxjs';
 import * as config from 'src/app/shared/config';
 
 export type parkingSpaceFunctionalDetails = {
-  edit: boolean;
-  formTitle: string;
-  parkingCategory: string;
-  totalCapacity: number;
-  charges: number;
+  edit?: boolean;
+  formTitle?: string;
+  parkingCategory?: string;
+  totalCapacity?: number;
+  charges?: number;
 };
 
 export type parkingSpace = {

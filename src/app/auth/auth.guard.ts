@@ -7,14 +7,14 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable, map, take } from 'rxjs';
-import { AuthService } from './auth.service';
+import { AuthService } from './service/auth.service';
 
 export const AuthGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ):
-  | boolean
   | UrlTree
+  | boolean
   | Observable<boolean | UrlTree>
   | Promise<boolean | UrlTree> => {
   const router = inject(Router);

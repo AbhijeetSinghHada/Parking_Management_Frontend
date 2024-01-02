@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
-import { User } from '../shared/user.model';
-import { HelperService } from '../shared/helper.service';
+import { User } from '../../shared/user.model';
+import { HelperService } from '../../shared/helper.service';
 import { Router } from '@angular/router';
-import * as config from '../shared/config';
+import * as config from '../../shared/config';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
