@@ -49,11 +49,9 @@ button {
 button:active {
   transform: scale(0.9);
 }
-.close-button {
-  &:hover {
-    color: #59c8f5;
-    cursor: pointer;
-  }
+.close-button:hover {
+  color: #59c8f5;
+  cursor: pointer;
 }
 
 .grad {
